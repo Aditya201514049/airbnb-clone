@@ -1,10 +1,10 @@
-
-import { connectDB } from "@/lib/mongodb";   
+import { connectDB } from "@/lib/mongodb";
 import Property from "@/models/Property";
+import User from "@/models/User"; // <-- Ensure User model is registered
 import { NextResponse } from "next/server";
 
 export async function GET(req) {
-  await connectDB();
+  await connectDB(); // Ensure DB is connected before using models
 
   try {
     const { searchParams } = new URL(req.url);
