@@ -1,9 +1,10 @@
-// app/api/properties/route.js
-import dbConnect from "@/lib/mongodb";
+
+import { connectDB } from "@/lib/mongodb";   
 import Property from "@/models/Property";
+import { NextResponse } from "next/server";
 
 export async function GET(req) {
-  await dbConnect();
+  await connectDB();
 
   try {
     const { searchParams } = new URL(req.url);
@@ -19,9 +20,13 @@ export async function GET(req) {
       if (maxPrice) filter.price.$lte = Number(maxPrice);
     }
 
-    const properties = await Property.find(filter);
-    return new Response(JSON.stringify(properties), { status: 200 });
+    const properties = await Property.find(filter).populate("host");
+
+    return NextResponse.json(properties, { status: 200 });  // ✅ NextResponse
   } catch (error) {
-    return new Response(JSON.stringify({ error: "Failed to fetch properties" }), { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch properties", details: error.message },
+      { status: 500 }
+    );
   }
 }

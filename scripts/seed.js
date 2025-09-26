@@ -28,6 +28,11 @@ async function seed() {
         location: "Miami",
         price: 200,
         images: ["https://via.placeholder.com/600x400"],
+        beds: 3,
+        baths: 2,
+        amenities: ["WiFi", "Pool", "Air Conditioning"],
+        availableFrom: new Date("2025-10-01"),
+        availableTo: new Date("2025-12-31"),
         host: users[0]._id,
       },
       {
@@ -36,6 +41,11 @@ async function seed() {
         location: "Denver",
         price: 150,
         images: ["https://via.placeholder.com/600x400"],
+        beds: 2,
+        baths: 1,
+        amenities: ["Fireplace", "Hiking Trails"],
+        availableFrom: new Date("2025-11-01"),
+        availableTo: new Date("2026-03-31"),
         host: users[1]._id,
       },
     ]);

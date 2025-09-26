@@ -13,6 +13,9 @@ const PropertySchema = new mongoose.Schema(
     amenities: [{ type: String }],
     availableFrom: { type: Date },
     availableTo: { type: Date },
+
+   
+    host: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   },
   { timestamps: true }
 );
