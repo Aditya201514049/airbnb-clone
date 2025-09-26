@@ -1,10 +1,10 @@
 // app/api/properties/[id]/route.js
-import dbConnect from "@/lib/mongodb";
+import { connectDB } from "@/lib/mongodb";
 import Property from "@/models/Property";
 import { Types } from "mongoose";
 
 export async function GET(req, { params }) {
-  await dbConnect();
+  await connectDB();
 
   const { id } = params;
   if (!Types.ObjectId.isValid(id)) {
